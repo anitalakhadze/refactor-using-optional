@@ -60,6 +60,12 @@ public class UserRepository {
                 .orElse(null);
     }
 
+    public Optional<User> findUserByEmail(String email) {
+        return users.stream()
+                .filter(user -> user.getContactInfo().isPresent() && user.contactInfo().email().equals(email))
+                .findFirst();
+    }
+
     public Optional<User> findByUserName(String username) {
         return users.stream()
                 .filter(user -> user.username().equals(username))

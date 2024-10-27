@@ -21,6 +21,12 @@ public class OrderRepository {
                 .orElse(null);
     }
 
+    public Optional<Order> findOrderById(Long id) {
+        return orders.stream()
+                .filter(order -> order.id().equals(id))
+                .findFirst();
+    }
+
     public Optional<Order> findLatestByCustomerId(Long customerId) {
         System.out.println("Getting latest order for customer with id " + customerId);
         return Optional.of(orders.getLast());
